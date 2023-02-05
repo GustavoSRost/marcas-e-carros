@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { ListaCarros } from "./ListaCarros";
+import { ListaMarcas } from "./ListaMarcas";
+import { ToggleDarkMode } from "./ToggleDarkMode";
+import React from "react";
 
-function App() {
+export default function App() {
+  const [darkMode, setDarkMode] = React.useState(true);
+  function toggleDarkMode() {
+    setDarkMode((prevDarkMode) => !prevDarkMode);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main
+      className={`h-full w-full mx-auto py-2 transition-all duration-300 ease-in-out font-mono 
+    ${darkMode ? "bg-slate-800" : "bg-slate-50"}`}
+    >
+      <ToggleDarkMode darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <section className="md:container mx-auto  gap-x-5 grid grid-cols-3 items-center justify-items-center">
+        <ListaMarcas />
+        <ListaCarros darkMode={darkMode} />
+      </section>
+    </main>
   );
 }
-
-export default App;
