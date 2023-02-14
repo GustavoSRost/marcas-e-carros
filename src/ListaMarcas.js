@@ -1,69 +1,15 @@
 import React from "react";
 
 export const ListaMarcas = (props) => {
-  const listMarcas = [
-    {
-      index: 1,
-      logo: "https://logosmarcas.net/wp-content/uploads/2021/04/Fiat-Logo.png",
-      marca: "Fiat",
-    },
-    {
-      index: 2,
-      logo: "https://i.pinimg.com/originals/10/62/e6/1062e6ed768e0bfff7d35e1b39717693.png",
-      marca: "Volkswagen",
-    },
-    {
-      index: 3,
-      logo: "https://logodownload.org/wp-content/uploads/2019/02/jeep-logo-1.png",
-      marca: "Jeep",
-    },
-    {
-      index: 4,
-      logo: "https://seeklogo.com/images/C/Chevrolet-logo-E01CD324DF-seeklogo.com.png",
-      marca: "Chevrolet",
-    },
-    {
-      index: 5,
-      logo: "https://logodownload.org/wp-content/uploads/2014/09/peugeot-logo-1-1.png",
-      marca: "Peugeot",
-    },
-    {
-      index: 6,
-      logo: "https://logodownload.org/wp-content/uploads/2017/10/volvo-logo-4-1.png",
-      marca: "Volvo",
-    },
-    {
-      index: 7,
-      logo: "https://logos-world.net/wp-content/uploads/2021/04/Renault-Logo.png",
-      marca: "Renault",
-    },
-    {
-      index: 8,
-      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/2560px-Honda.svg.png",
-      marca: "Honda",
-    },
-    {
-      index: 9,
-      logo: "https://logodownload.org/wp-content/uploads/2014/04/mercedes-benz-logo-4-1.png",
-      marca: "Mercedes-Benz",
-    },
-    {
-      index: 10,
-      logo: "https://logodownload.org/wp-content/uploads/2016/11/audi-logo-10.png",
-      marca: "Audi",
-    },
-    {
-      index: 11,
-      logo: "https://listcarbrands.com/wp-content/uploads/2016/02/Citroen-Logo-tumb.png",
-      marca: "Citroën",
-    },
-    {
-      index: 12,
-      logo: "https://www.citypng.com/public/uploads/small/11662459625vtiwstv2ysenthwahzrmngzai30jmcv67yl8sy50sj5jdkv9hj0mqc3ytt1ret8c99g1jhozbyucqechoo342eoaqmeqcvbgwbbn.png",
-      marca: "Hyundai",
-    },
-  ];
-
+  const fetchMarca = async () => {
+    const response = await fetch("/marcas.json");
+    const data = await response.json();
+    setListMarcas(data);
+  };
+  React.useEffect(() => {
+    fetchMarca();
+  }, []);
+  const [listMarcas, setListMarcas] = React.useState([]);
   return (
     <div className="col-span-6">
       <h1
